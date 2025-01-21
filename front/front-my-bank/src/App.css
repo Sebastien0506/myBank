@@ -36,3 +36,33 @@
     transform: rotate(360deg);
   }
 }
+
+ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.title{
+  text-align: center;
+  margin-top: 5%;
+}
+
+.formDepence{
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+.gerezDepence {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.mesDepence{
+  display: flex;
+  justify-content: space-around;
+}
+
