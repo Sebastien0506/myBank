@@ -2,7 +2,8 @@ import React from "react";
 
 function MesDepence() {
     const [nameDepence, setNameDepence] = React.useState('');
-    const [priceDepence, setPriceDepence] = React.useState(Number())
+    const [priceDepence, setPriceDepence] = React.useState('');
+    const [expenses, setExpenses] = React.useState([]); 
 
     function NameDepence(e) {
         setNameDepence(e.target.value);
@@ -10,54 +11,80 @@ function MesDepence() {
 
     function PriceDepence(e) {
         const inputValue = e.target.value;
-    
-        
+
         if (isNaN(Number(inputValue))) {
-            alert("Please enter a numbe");
+            alert("Please enter a number");
         } else {
-            setPriceDepence(Number(inputValue)); 
+            setPriceDepence(inputValue);
         }
     }
 
-    function handleCkick() {
-        const nameValue = 
+    function handleClick(e) {
+        e.preventDefault(); 
+
+        if (nameDepence.trim() === '' || priceDepence.trim() === '') {
+            alert("Please fill in all the fields.");
+            return;
+        }
+
+        
+        setExpenses([
+            ...expenses,
+            { name: nameDepence, price: Number(priceDepence) },
+        ]);
+
+        
+        setNameDepence('');
+        setPriceDepence('');
     }
-    return(
+
+    return (
         <div>
-            <h1 className="title">Mes Depences</h1>
+            <h1 className="title">Mes Dépenses</h1>
 
             <div className="gerezDepence">
                 <div>
-                <h3>Ajoutez une dépence</h3>
+                    <h3>Ajoutez une dépense</h3>
 
-                <form action="">
-                    <div className="formDepence">
-                        <label htmlFor="name" id="name">Nom de la dépence:</label>
-                        <input type="text" name="name" placeholder="Nom de la dépence" onChange={NameDepence} value={nameDepence}/>
-                    </div>
-                    <div className="formDepence">
-                        <label htmlFor="montant" id="montant">Montant:</label>
-                        <input type="text" name="montant" placeholder="montant dépencer" onChange={PriceDepence} value={priceDepence}/>
-                    </div>
-                    <button onClick={handleCkick}>Ajoutez</button>
-                    
-                </form>
+                    <form>
+                        <div className="formDepence">
+                            <label htmlFor="name" id="name">Nom de la dépense:</label>
+                            <input
+                                type="text"
+                                name="name"
+                                placeholder="Nom de la dépense"
+                                onChange={NameDepence}
+                                value={nameDepence}
+                            />
+                        </div>
+                        <div className="formDepence">
+                            <label htmlFor="montant" id="montant">Montant:</label>
+                            <input
+                                type="text"
+                                name="montant"
+                                placeholder="Montant dépensé"
+                                onChange={PriceDepence}
+                                value={priceDepence}
+                            />
+                        </div>
+                        <button onClick={handleClick}>Ajoutez</button>
+                    </form>
                 </div>
-                
+
                 <div>
-                    <h3>Mes dépence actuel</h3>
-
-                     <div className="mesDepence">
-                        <p>Nom de la dépence: <br />{nameDepence}</p>
-                        <p>Prix €: <br />{priceDepence}</p>
-                     </div>
-                    
-
-                    <p>total: </p>
+                    <h3>Mes dépenses actuelles</h3>
+                    <div className="mesDepence">
+                        {expenses.map((expense, index) => (
+                            <p key={index}>
+                                Nom: {expense.name} | Prix: {expense.price} €
+                            </p>
+                        ))}
+                    </div>
+                    <p>
+                        Total:{" "}
+                        {expenses.reduce((total, expense) => total + expense.price, 0)} €
+                    </p>
                 </div>
-                
-                
-                
             </div>
         </div>
     );
