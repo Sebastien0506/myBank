@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Depences{% endblock %}
+
+{% block body %}
+    <h1>Create new Depences</h1>
+
+    {{ include('depences/_form.html.twig') }}
+
+    <a href="{{ path('app_depences_index') }}">back to list</a>
+{% endblock %}

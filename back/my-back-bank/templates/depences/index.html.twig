@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Depences index{% endblock %}
+
+{% block body %}
+    <h1>Depences index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for depence in depences %}
+            <tr>
+                <td>{{ depence.id }}</td>
+                <td>{{ depence.name }}</td>
+                <td>{{ depence.price }}</td>
+                <td>
+                    <a href="{{ path('app_depences_show', {'id': depence.id}) }}">show</a>
+                    <a href="{{ path('app_depences_edit', {'id': depence.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_depences_new') }}">Create new</a>
+{% endblock %}
