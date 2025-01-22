@@ -5,6 +5,7 @@ function MesDepence() {
     const [priceDepence, setPriceDepence] = React.useState('');
     const [expenses, setExpenses] = React.useState([]); 
 
+
     function NameDepence(e) {
         setNameDepence(e.target.value);
     }
@@ -39,7 +40,9 @@ function MesDepence() {
     }
 
     return (
+    
         <div>
+            <h2>Attention à mettre une categorie</h2>
             <h1 className="title">Mes Dépenses</h1>
 
             <div className="gerezDepence">
