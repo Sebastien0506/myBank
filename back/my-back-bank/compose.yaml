@@ -3,7 +3,7 @@ services:
     # Mysql database container
     db:
         image: mysql
-        container_name: tutorial_db_symfony
+        container_name: symfony_myBanck
         restart: always
         volumes:
             - db-data:/var/lib/mysql
@@ -29,13 +29,14 @@ services:
     # Symfony apache project container
     www:
         build: 
-          context: ./docker/php
-        container_name: tutorial_symfony
+          context: .
+          dockerfile: Dockerfile
+        container_name: symfony-myBank
         ports:
           - "8741:80"
         volumes:
             - ./docker/php/vhosts:/etc/apache2/sites-enabled
-            - ./:/var/www
+            - ./:/var/www/project
         restart: always
         networks:
             - tutorial
