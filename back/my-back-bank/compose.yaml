@@ -38,22 +38,12 @@ services:
         restart: always
         networks:
             - symfony
-    jenkins:
-        image: jenkins/jenkins:lts-jdk17
-        container_name: brave_thompson
-        ports:
-            - "8080:8080"
-            - "50000:50000"
-        volumes:
-            - jenkins_home:/var/jenkins_home
-            - /var/run/docker.sock:/var/run/docker.sock
-        networks:
-            - symfony
 
 
 networks:
     symfony:
+      external: true
 
 volumes:
     db-data:
-    jenkins_home:
+   
