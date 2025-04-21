@@ -10,7 +10,7 @@ services:
         environment:
             MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
         networks:
-            - tutorial
+            - symfony
 
     # phpmyadmin container
     phpmyadmin:
@@ -24,7 +24,7 @@ services:
         environment:
             PMA_HOST: db
         networks:
-            - tutorial
+            - symfony
 
     # Symfony apache project container
     www:
@@ -39,10 +39,10 @@ services:
             - ./:/var/www/project
         restart: always
         networks:
-            - tutorial
+            - symfony
 
 networks:
-    tutorial:
+    symfony:
 
 volumes:
     db-data:
