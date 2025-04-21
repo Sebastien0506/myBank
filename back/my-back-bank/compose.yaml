@@ -45,6 +45,8 @@ services:
             context: .
             dockerfile: Dockerfile
         container_name: jenkins-agent-mybank
+        volumes:
+          - .:/var/www/project
         networks:
             - symfony
 
